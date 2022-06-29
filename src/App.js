@@ -15,7 +15,7 @@ class App extends Component {
     return (
       <div>
         <Header title="WEB" sub="이건우 머리 입니다!"></Header>   {/* <Subject /> */}
-        <Footer title="HTML" desc="이건우 발 입니다."></Footer>
+        <Footer title="HTML" desc="이건우 발 입니다...."></Footer>
       </div>
     );
   }
