@@ -42,7 +42,7 @@ class App extends Component {
         <Subject title={this.state.Subject.title} sub={this.state.Subject.sub}></Subject>   {/* <Subject /> */}
         {/* <Subject title="React" sub="FOR UI"></Subject> */}
         <TOC data={this.state.contents}></TOC>
-        <COL title="HTML" desc="HTML is HyperText Markup Language."></COL>
+        <COL title="HTML" desc="HTML is HyperText Markup Language...."></COL>
       </div>
       // <div className="App">
       //   <header className="App-header">
