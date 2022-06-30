@@ -4,10 +4,12 @@
 import TOC from './components/TOC';
 import COL from './components/COL';
 import Subject from './components/Subject';
+import Control from './components/Control';
 
 import './App.css';
 import React,{ Component } from 'react';
 // import Header from '../src/chrome/Header';
+// import Body from '../src/chrome/Body';
 // import Footer from '../src/chrome/Footer';
 
 // class App extends Component {
@@ -87,6 +89,11 @@ class App extends Component {
               );
           }.bind(this)}
         ></TOC>
+        <Control onChangeMode={function(_mode){
+          this.setState({
+            mode:_mode
+          });
+        }.bind(this)}></Control>
 
         <COL title={_title} desc={_desc}></COL>
       </div>
@@ -112,3 +119,67 @@ class App extends Component {
 
 
 export default App;
+
+//--------------------------------------------------------------------------------------------------------------------------
+
+// class App extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       mode:'read',
+//       selected_content_id:1,
+//       subject:{title:'홈',sub:'안녕하세요~'},
+//       welcome:{title:'환영합니다', desc:'안녕하세요 이건우라고 합니다. 잘부탁드립니다.'},
+//       contents:[
+//         {id:1, title:'이건우',desc:'손놈님~~'},
+//         {id:2, title:'나이',desc:'32세'},
+//         {id:3, title:'연락처', desc:'010-1234-5678'},
+//         {id:4, title:'집', desc:'서울 구로구'},
+//       ]
+//     }
+//   }
+//   render() {
+//     console.log('App render');
+//     let _title, _desc = null;
+//     if(this.state.mode === 'Welcome') {       // == 는 값이 같은 때만 사용, === 는 값과, 타입이 같은지 확인할 때 사용
+//       _title = this.state.welcome.title;
+//       _desc = this.state.welcome.desc;
+//     }else if(this.state.mode === 'read') {
+
+//       let i = 0;
+//       while(i < this.state.contents.length) {
+//         let data = this.state.contents[i];
+//         if(data.id === this.state.selected_content_id) {
+//           _title = data.title;
+//           _desc = data.desc;
+//           break;
+//         }
+//         i = i+1;
+//       }
+
+//     }
+//     return (
+//       <div>
+//         <Header 
+//           title={this.state.subject.title} 
+//           sub={this.state.subject.sub}
+//           onChangePage={function(){this.setState({mode:'Welcome'})}.bind(this)}
+//         ></Header>   {/* <Subject /> */}
+
+//         <Body data={this.state.contents}
+//           onChangePage={function(id){
+//             this.setState(
+//               {
+//                 mode:'read',
+//                 selected_content_id:Number(id)
+//               }
+//               );
+//           }.bind(this)}
+//         ></Body>
+
+//         <Footer title={_title} desc={_desc}></Footer>
+//       </div>
+//     );
+//   }
+// }
+// export default App;
