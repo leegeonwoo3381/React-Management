@@ -2,12 +2,15 @@
 // import './App.css';
 // import React,{ Component } from 'react';
 import TOC from './components/TOC';
-import COL from './components/COL';
+import ReadContent from './components/ReadContent';
 import Subject from './components/Subject';
 import Control from './components/Control';
+import UpdateContent from './components/UpdateContent';
 
 import './App.css';
 import React,{ Component } from 'react';
+import CreateContent from './components/CreateContent';
+// import ReadContent from './components/ReadContent';
 // import Header from '../src/chrome/Header';
 // import Body from '../src/chrome/Body';
 // import Footer from '../src/chrome/Footer';
@@ -29,6 +32,7 @@ import React,{ Component } from 'react';
 class App extends Component {
   constructor(props) {
     super(props);
+    this.max_content_id = 3;
     this.state = {
       mode:'read',
       selected_content_id:2,
@@ -43,10 +47,11 @@ class App extends Component {
   }
   render() {
     console.log('App render');
-    let _title, _desc = null;
+    let _title, _desc = null, _article;
     if(this.state.mode === 'Welcome') {       // == 는 값이 같은 때만 사용, === 는 값과, 타입이 같은지 확인할 때 사용
       _title = this.state.welcome.title;
       _desc = this.state.welcome.desc;
+      _article = <ReadContent title={_title} desc={_desc}></ReadContent>;
     }else if(this.state.mode === 'read') {
       // for(let i=0; i<this.state.contents.length; i++) {
       //   let data = this.state.contents[i];
@@ -67,7 +72,23 @@ class App extends Component {
         }
         i = i+1;
       }
+      _article = <ReadContent title={_title} desc={_desc}></ReadContent>;
+    }else if(this.state.mode === 'create') {
+      _article = <CreateContent onSubmit={function(_title,_desc){
+        // console.log(_title, _desc);
+        this.max_content_id = this.max_content_id +1;
+        // this.state.contents.push(
+        //   {id:this.max_content_id,title:_title,desc:_desc}
+        // );
 
+        let _contents = this.state.contents.concat(
+          {id:this.max_content_id,title:_title,desc:_desc}
+        );
+
+        this.setState({
+          contents : _contents
+        })
+      }.bind(this)}></CreateContent>
     }
     return (
       <div>
@@ -94,8 +115,7 @@ class App extends Component {
             mode:_mode
           });
         }.bind(this)}></Control>
-
-        <COL title={_title} desc={_desc}></COL>
+        {_article}
       </div>
       // <div className="App">
       //   <header className="App-header">

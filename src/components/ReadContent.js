@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 
-class COL extends Component {
+class ReadContent extends Component {
     render() {
       console.log('COL render');
       return (
@@ -12,4 +12,4 @@ class COL extends Component {
     }
   }
 
-  export default COL;
+  export default ReadContent;
